@@ -152,7 +152,7 @@ const API = {
     }
 
     // A API retorna objeto com chaves numéricas
-    const imoveis = typeof data === 'object' && !Array.isArray(data)
+    const imoveis = data && typeof data === "object" && !Array.isArray(data)
       ? Object.values(data)
       : data;
 
