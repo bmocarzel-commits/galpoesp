@@ -2,7 +2,7 @@ const API = {
 
   url(endpoint, params = {}) {
     let url = `/.netlify/functions/vista?endpoint=${endpoint}`;
-    if (params.pesquisa) url += `&pesquisa=${params.pesquisa}`;
+    if (params.pesquisa) url += `&pesquisa=${encodeURIComponent(params.pesquisa)}`;
     if (params.imovel) url += `&imovel=${params.imovel}`;
     return url;
   },
@@ -10,9 +10,9 @@ const API = {
   async listarImoveis(filtros = {}) {
     const pesquisa = JSON.stringify({
       fields: [
-        'Codigo', 'Titulo', 'Categoria', 'Cidade', 'Bairro',
+        'Codigo', 'Categoria', 'Cidade', 'Bairro', 'Endereco',
         'AreaTotal', 'AreaPrivativa', 'ValorLocacao', 'ValorVenda',
-        'PeDirecto', 'Docas', 'Situacao', 'FotoDestaque', 'Destaque'
+        'PeDireito', 'Docas', 'Situacao', 'FotoDestaque', 'Destaque'
       ],
       filter: { ...filtros },
       paginacao: { pagina: filtros.pagina || 1, quantidade: filtros.quantidade || 9 },
@@ -35,12 +35,11 @@ const API = {
   async detalhesImovel(codigo) {
     const pesquisa = JSON.stringify({
       fields: [
-        'Codigo', 'Titulo', 'Categoria', 'Cidade', 'Bairro', 'Endereco',
+        'Codigo', 'Categoria', 'Cidade', 'Bairro', 'Endereco',
         'AreaTotal', 'AreaPrivativa', 'ValorLocacao', 'ValorVenda',
-        'PeDirecto', 'Docas', 'Descricao', 'Situacao',
-        'TipoEnergia', 'Piso', 'AVCB', 'FotoDestaque',
-        { fotos: ['Foto', 'FotoPequena', 'Destaque'] },
-        { Corretor: ['Nome', 'Fone', 'Email'] }
+        'PeDireito', 'Docas', 'Descricao', 'Situacao',
+        'FotoDestaque',
+        { fotos: ['Foto', 'FotoPequena', 'Destaque'] }
       ]
     });
 
@@ -68,7 +67,7 @@ const API = {
     if (dados.codigoImovel) cadastro.lead.anuncio = dados.codigoImovel;
 
     try {
-      const resp = await fetch(`/.netlify/functions/vista?endpoint=leads/cadastro`, {
+      const resp = await fetch(this.url('leads/cadastro'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: `cadastro=${encodeURIComponent(JSON.stringify(cadastro))}`
@@ -94,8 +93,9 @@ const API = {
     const foto = imovel.FotoDestaque || null;
     const preco = this.formatarValor(imovel.ValorLocacao) || this.formatarValor(imovel.ValorVenda) || 'Consultar';
     const area = this.formatarArea(imovel.AreaTotal) || this.formatarArea(imovel.AreaPrivativa) || '—';
-    const pe = imovel.PeDirecto ? `${imovel.PeDirecto}m` : '—';
+    const pe = imovel.PeDireito ? `${imovel.PeDireito}m` : '—';
     const docas = imovel.Docas ? `${imovel.Docas} docas` : '—';
+    const titulo = `${imovel.Categoria || 'Galpão'} — ${imovel.Bairro || imovel.Cidade || ''}`;
 
     return `
       <a href="imovel.html?codigo=${imovel.Codigo}" class="imovel-card">
@@ -108,7 +108,7 @@ const API = {
           <div class="imovel-badge">${imovel.Situacao || 'Disponível'}</div>
         </div>
         <div class="imovel-info">
-          <div class="imovel-titulo">${imovel.Titulo || `${imovel.Categoria} ${imovel.Bairro}`}</div>
+          <div class="imovel-titulo">${titulo}</div>
           <div class="imovel-local">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
               <circle cx="6" cy="5" r="3" stroke="#888780" stroke-width="1.2"/>
@@ -139,7 +139,7 @@ const API = {
 
     const data = await this.listarImoveis(filtros);
 
-    if (!data || !data.imoveis || Object.keys(data.imoveis).length === 0) {
+    if (!data || Object.keys(data).length === 0) {
       container.innerHTML = `
         <div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">
           Nenhum imóvel disponível no momento.<br>
@@ -151,7 +151,13 @@ const API = {
       return;
     }
 
-    container.innerHTML = Object.values(data.imoveis)
+    // A API retorna objeto com chaves numéricas
+    const imoveis = typeof data === 'object' && !Array.isArray(data)
+      ? Object.values(data)
+      : data;
+
+    container.innerHTML = imoveis
+      .filter(i => i && i.Codigo)
       .map(imovel => this.gerarCardImovel(imovel))
       .join('');
   }
