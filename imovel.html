@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galpões SP | Detalhes do Imóvel</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root { --azul:#1A3A5C; --ambar:#D4820A; --cinza:#F5F3EE; --texto:#2C2C2A; --suave:#5F5E5A; --branco:#fff; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Sora',sans-serif; color:var(--texto); background:var(--branco); }
+nav { background:var(--azul); padding:0 5%; height:64px; display:flex; align-items:center; justify-content:space-between; }
+.nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.nav-logo-icon { width:36px; height:36px; background:var(--ambar); border-radius:8px; display:flex; align-items:center; justify-content:center; }
+.nav-logo span:first-child { color:#fff; font-size:14px; font-weight:600; display:block; }
+.nav-logo span:last-child { color:rgba(255,255,255,0.5); font-size:10px; }
+.nav-wa { background:var(--ambar); color:#fff; padding:8px 16px; border-radius:6px; font-size:13px; font-weight:500; text-decoration:none; }
+.container { max-width:1100px; margin:0 auto; padding:40px 5%; }
+.breadcrumb { font-size:13px; color:var(--suave); margin-bottom:24px; }
+.breadcrumb a { color:var(--azul); text-decoration:none; }
+.imovel-grid { display:grid; grid-template-columns:1fr 380px; gap:40px; align-items:start; }
+.fotos-wrap { border-radius:12px; overflow:hidden; background:var(--cinza); }
+.foto-principal { height:380px; background:var(--cinza); display:flex; align-items:center; justify-content:center; }
+.foto-principal img { width:100%; height:100%; object-fit:cover; }
+.foto-placeholder { opacity:0.3; }
+.fotos-thumb { display:flex; gap:8px; padding:8px; overflow-x:auto; }
+.thumb { width:80px; height:60px; border-radius:6px; overflow:hidden; cursor:pointer; flex-shrink:0; border:2px solid transparent; }
+.thumb.active { border-color:var(--azul); }
+.thumb img { width:100%; height:100%; object-fit:cover; }
+.info-wrap { position:sticky; top:20px; }
+.tag-categoria { display:inline-block; background:var(--cinza); color:var(--suave); font-size:11px; font-weight:600; padding:4px 12px; border-radius:20px; margin-bottom:10px; text-transform:uppercase; letter-spacing:0.04em; }
+h1 { font-family:'DM Serif Display',serif; font-size:28px; color:var(--azul); line-height:1.2; margin-bottom:8px; }
+.local { font-size:14px; color:var(--suave); margin-bottom:20px; display:flex; align-items:center; gap:6px; }
+.preco-box { background:var(--azul); border-radius:12px; padding:20px; margin-bottom:20px; }
+.preco-label { color:rgba(255,255,255,0.6); font-size:12px; margin-bottom:4px; }
+.preco-val { color:var(--ambar); font-size:28px; font-weight:700; }
+.preco-val small { font-size:14px; font-weight:400; color:rgba(255,255,255,0.6); }
+.specs-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+.spec-item { background:var(--cinza); border-radius:8px; padding:12px 14px; }
+.spec-item .val { font-size:16px; font-weight:700; color:var(--azul); }
+.spec-item .lbl { font-size:11px; color:var(--suave); margin-top:2px; }
+.btn-wa { width:100%; background:#25D366; color:#fff; border:none; border-radius:10px; padding:16px; font-size:15px; font-weight:700; cursor:pointer; font-family:'Sora',sans-serif; display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px; transition:opacity 0.2s; }
+.btn-wa:hover { opacity:0.9; }
+.btn-denis { width:100%; background:var(--ambar); color:#fff; border:none; border-radius:10px; padding:14px; font-size:14px; font-weight:600; cursor:pointer; font-family:'Sora',sans-serif; transition:opacity 0.2s; }
+.btn-denis:hover { opacity:0.9; }
+.descricao { margin-top:32px; }
+.descricao h3 { font-size:16px; font-weight:600; color:var(--azul); margin-bottom:10px; }
+.descricao p { font-size:14px; color:var(--suave); line-height:1.8; }
+.loading { text-align:center; padding:80px; color:var(--suave); }
+.wa-float { position:fixed; bottom:24px; right:24px; z-index:999; background:#25D366; width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; text-decoration:none; box-shadow:0 4px 20px rgba(37,211,102,0.4); transition:transform 0.2s; }
+.wa-float:hover { transform:scale(1.1); }
+footer { background:#2C2C2A; padding:24px 5%; margin-top:60px; }
+footer p { color:rgba(255,255,255,0.4); font-size:12px; text-align:center; }
+@media(max-width:900px) { .imovel-grid { grid-template-columns:1fr; } .info-wrap { position:static; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="10" width="16" height="8" rx="1" fill="white"/><rect x="4" y="6" width="12" height="5" rx="1" fill="rgba(255,255,255,0.6)"/><rect x="7" y="10" width="3" height="8" fill="rgba(255,255,255,0.4)"/></svg>
+    </div>
+    <div><span>Galpões SP</span><span>Consultoria Industrial</span></div>
+  </a>
+  <a href="https://wa.me/5511971467340" target="_blank" class="nav-wa">WhatsApp Denis</a>
+</nav>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="index.html">Início</a> → <a href="index.html#portfolio">Portfólio</a> → <span id="bread-titulo">Carregando...</span>
+  </div>
+
+  <div id="imovel-conteudo">
+    <div class="loading">Carregando informações do imóvel...</div>
+  </div>
+</div>
+
+<a href="https://wa.me/5511971467340" target="_blank" class="wa-float">
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 2C7.373 2 2 7.373 2 14c0 2.074.537 4.02 1.48 5.71L2 26l6.46-1.45A11.94 11.94 0 0014 26c6.627 0 12-5.373 12-12S20.627 2 14 2z" fill="white"/><path d="M10.5 8.5c-.3-.7-.6-.7-.9-.7h-.8c-.3 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.1 0 1.8 1.3 3.6 1.5 3.8.2.3 2.6 4 6.3 5.5 3.1 1.2 3.8 1 4.4.9.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.2-.4-.3-.8-.5-.4-.2-2.1-1-2.5-1.2-.3-.2-.6-.2-.9.2-.3.4-1 1.2-1.3 1.5-.2.2-.5.3-.9.1-.4-.2-1.8-.7-3.4-2.1-1.3-1.1-2.1-2.5-2.4-2.9-.2-.4 0-.6.2-.8l.6-.7c.2-.2.2-.4.3-.7.1-.2 0-.5-.1-.7z" fill="#25D366"/></svg>
+</a>
+
+<footer><p>© 2026 Galpões SP Consultoria · Denis Cordeiro · CRECI 021527-J</p></footer>
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script>
+// Pega o código do imóvel da URL (?codigo=XXXX)
+const params = new URLSearchParams(window.location.search);
+const codigo = params.get('codigo');
+
+let fotosDisponiveis = [];
+let fotoAtiva = 0;
+
+async function carregarImovel() {
+  if (!codigo) {
+    document.getElementById('imovel-conteudo').innerHTML = '<div class="loading">Imóvel não encontrado.</div>';
+    return;
+  }
+
+  const data = await API.detalhesImovel(codigo);
+  if (!data || !data.imovel) {
+    document.getElementById('imovel-conteudo').innerHTML = '<div class="loading">Imóvel não encontrado ou indisponível.</div>';
+    return;
+  }
+
+  const im = data.imovel;
+
+  // Atualiza title e breadcrumb
+  const titulo = im.Titulo || `${im.Categoria} em ${im.Cidade}`;
+  document.title = `${titulo} | Galpões SP`;
+  document.getElementById('bread-titulo').textContent = titulo;
+
+  // Monta fotos
+  fotosDisponiveis = [];
+  if (im.FotoDestaque) fotosDisponiveis.push(im.FotoDestaque);
+  if (im.fotos) {
+    Object.values(im.fotos).forEach(f => {
+      if (f.Foto && !fotosDisponiveis.includes(f.Foto)) fotosDisponiveis.push(f.Foto);
+    });
+  }
+
+  const preco = API.formatarValor(im.ValorLocacao) || API.formatarValor(im.ValorVenda) || 'Consultar';
+  const area = API.formatarArea(im.AreaTotal) || API.formatarArea(im.AreaPrivativa) || '—';
+  const pe = im.PeDirecto ? `${im.PeDirecto}m` : '—';
+  const docas = im.Docas || '—';
+
+  document.getElementById('imovel-conteudo').innerHTML = `
+    <div class="imovel-grid">
+      <div>
+        <div class="fotos-wrap">
+          <div class="foto-principal" id="foto-main">
+            ${fotosDisponiveis.length > 0
+              ? `<img src="${fotosDisponiveis[0]}" alt="${titulo}" id="img-principal">`
+              : `<svg class="foto-placeholder" width="80" height="80" viewBox="0 0 60 60" fill="none">
+                  <rect x="8" y="30" width="44" height="22" rx="2" fill="#1A3A5C"/>
+                  <rect x="12" y="18" width="36" height="14" rx="1" fill="#2A5A8C"/>
+                  <rect x="20" y="32" width="6" height="20" fill="#D4820A"/>
+                </svg>`}
+          </div>
+          ${fotosDisponiveis.length > 1 ? `
+          <div class="fotos-thumb">
+            ${fotosDisponiveis.map((f, i) => `
+              <div class="thumb ${i === 0 ? 'active' : ''}" onclick="trocarFoto(${i})">
+                <img src="${f}" alt="Foto ${i+1}">
+              </div>`).join('')}
+          </div>` : ''}
+        </div>
+
+        ${im.Descricao ? `
+        <div class="descricao">
+          <h3>Sobre o imóvel</h3>
+          <p>${im.Descricao}</p>
+        </div>` : ''}
+      </div>
+
+      <div class="info-wrap">
+        <div class="tag-categoria">${im.Categoria || 'Galpão Industrial'}</div>
+        <h1>${titulo}</h1>
+        <div class="local">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <circle cx="7" cy="6" r="3.5" stroke="#888780" stroke-width="1.2"/>
+            <path d="M7 9.5C7 9.5 2.5 12 2.5 6A4.5 4.5 0 0111.5 6C11.5 12 7 9.5 7 9.5z" stroke="#888780" stroke-width="1.2" fill="none"/>
+          </svg>
+          ${[im.Bairro, im.Cidade].filter(Boolean).join(', ')} — SP
+        </div>
+
+        <div class="preco-box">
+          <div class="preco-label">Valor de locação</div>
+          <div class="preco-val">${preco}<small>/mês</small></div>
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-item"><div class="val">${area}</div><div class="lbl">Área total</div></div>
+          <div class="spec-item"><div class="val">${pe}</div><div class="lbl">Pé-direito</div></div>
+          <div class="spec-item"><div class="val">${docas}</div><div class="lbl">Docas</div></div>
+          <div class="spec-item"><div class="val">${im.Situacao || 'Disponível'}</div><div class="lbl">Situação</div></div>
+          ${im.AVCB ? `<div class="spec-item"><div class="val">${im.AVCB}</div><div class="lbl">AVCB</div></div>` : ''}
+          ${im.Piso ? `<div class="spec-item"><div class="val">${im.Piso}</div><div class="lbl">Tipo de piso</div></div>` : ''}
+        </div>
+
+        <button class="btn-wa" onclick="contatarWhats()">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 1C5.03 1 1 5.03 1 10c0 1.56.41 3.02 1.12 4.28L1 19l4.86-1.09A8.96 8.96 0 0010 19c4.97 0 9-4.03 9-9s-4.03-9-9-9z" fill="white"/><path d="M7.5 6c-.22-.53-.45-.54-.66-.54h-.6c-.22 0-.57.08-.87.38-.3.3-1.14 1.11-1.14 2.71s1.17 3.14 1.33 3.36c.16.22 2.25 3.5 5.5 4.77 2.72 1.07 3.27.86 3.86.8.59-.06 1.9-.77 2.17-1.52.27-.75.27-1.4.19-1.53-.08-.13-.3-.22-.63-.38-.33-.16-1.9-.94-2.2-1.04-.3-.1-.51-.16-.73.16-.21.3-.83 1.04-1.02 1.26-.19.21-.38.24-.7.08-.33-.16-1.39-.51-2.65-1.63-1.02-.9-1.7-2-1.9-2.34-.2-.34 0-.53.15-.7l.52-.6c.16-.19.22-.33.33-.55.11-.22 0-.42-.08-.59z" fill="#25D366"/></svg>
+          Falar com Denis sobre este imóvel
+        </button>
+        <button class="btn-denis" onclick="agendarVisita()">Agendar visita →</button>
+
+        <p style="font-size:11px;color:#888;text-align:center;margin-top:10px;">Código do imóvel: ${im.Codigo}</p>
+      </div>
+    </div>`;
+}
+
+function trocarFoto(idx) {
+  fotoAtiva = idx;
+  const img = document.getElementById('img-principal');
+  if (img) img.src = fotosDisponiveis[idx];
+  document.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === idx));
+}
+
+function contatarWhats() {
+  const titulo = document.getElementById('bread-titulo')?.textContent || 'um imóvel';
+  const msg = `Olá Denis! Tenho interesse no imóvel: ${titulo} (código ${codigo}). Podemos conversar?`;
+  API.enviarLead({ nome: 'Visitante do site', fone: '', mensagem: msg, codigoImovel: codigo, origem: 'Página do Imóvel' });
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function agendarVisita() {
+  const titulo = document.getElementById('bread-titulo')?.textContent || 'um imóvel';
+  const msg = `Olá Denis! Gostaria de agendar uma visita ao imóvel: ${titulo} (código ${codigo}). Quando seria possível?`;
+  API.enviarLead({ nome: 'Visitante do site', fone: '', mensagem: msg, codigoImovel: codigo, origem: 'Agendamento de Visita' });
+  window.open(`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+carregarImovel();
+</script>
+</body>
+</html>

@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Especialistas em locação e venda de galpões industriais na Grande São Paulo. ABC, Guarulhos, Osasco, Cajamar, Campinas e toda a região metropolitana. Fale com Denis Cordeiro.">
+<meta name="keywords" content="galpão industrial Grande SP, galpão para alugar São Paulo, galpão Guarulhos, galpão Cajamar, galpão Osasco, aluguel galpão ABC, galpão industrial Grande São Paulo, imóvel industrial SP">
+<title>Galpões SP Consultoria | Especialistas em Imóveis Industriais na Grande São Paulo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root {
+  --azul: #1A3A5C;
+  --azul-medio: #2A5A8C;
+  --azul-claro: #EBF2FA;
+  --ambar: #D4820A;
+  --ambar-claro: #FEF3E2;
+  --carvao: #2C2C2A;
+  --cinza: #F5F3EE;
+  --cinza-medio: #888780;
+  --branco: #ffffff;
+  --texto: #2C2C2A;
+  --texto-suave: #5F5E5A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Sora', sans-serif;
+  color: var(--texto);
+  background: var(--branco);
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: var(--azul);
+  padding: 0 5%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--ambar);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-logo-text span:first-child {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.nav-logo-text span:last-child {
+  color: rgba(255,255,255,0.55);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: #fff; }
+
+.nav-cta {
+  background: var(--ambar);
+  color: #fff !important;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 13px !important;
+  transition: opacity 0.2s !important;
+}
+
+.nav-cta:hover { opacity: 0.9; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  background: var(--azul);
+  display: flex;
+  align-items: center;
+  padding: 80px 5% 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: rgba(42, 90, 140, 0.3);
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -150px; left: -50px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: rgba(212, 130, 10, 0.08);
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(212,130,10,0.15);
+  border: 1px solid rgba(212,130,10,0.3);
+  color: #F0A830;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(36px, 4.5vw, 56px);
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.hero h1 em {
+  color: var(--ambar);
+  font-style: italic;
+}
+
+.hero-sub {
+  color: rgba(255,255,255,0.65);
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 480px;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.btn-primary {
+  background: var(--ambar);
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.2s, transform 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.btn-secondary {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.btn-secondary:hover { background: rgba(255,255,255,0.15); }
+
+.hero-stats {
+  display: flex;
+  gap: 28px;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-stat strong {
+  color: var(--ambar);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.hero-stat span {
+  color: rgba(255,255,255,0.55);
+  font-size: 12px;
+}
+
+/* HERO RIGHT — CALCULADORA */
+.hero-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  padding: 28px;
+  backdrop-filter: blur(10px);
+}
+
+.hero-card-title {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.hero-card-sub {
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  margin-bottom: 20px;
+}
+
+.calc-field {
+  margin-bottom: 14px;
+}
+
+.calc-field label {
+  display: block;
+  color: rgba(255,255,255,0.65);
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.calc-field select,
+.calc-field input {
+  width: 100%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  padding: 10px 14px;
+  color: #fff;
+  font-family: 'Sora', sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.calc-field select option { background: var(--azul); }
+.calc-field select:focus,
+.calc-field input:focus { border-color: var(--ambar); }
+
+.calc-result-box {
+  background: var(--ambar);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.calc-result-box .label {
+  color: rgba(255,255,255,0.8);
+  font-size: 12px;
+}
+
+.calc-result-box .value {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.calc-result-box .value small {
+  font-size: 11px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.calc-cta {
+  width: 100%;
+  margin-top: 12px;
+  background: #fff;
+  color: var(--azul);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  font-family: 'Sora', sans-serif;
+  transition: opacity 0.2s;
+}
+
+.calc-cta:hover { opacity: 0.9; }
+
+/* ISCA BANNER */
+.isca-banner {
+  background: var(--ambar);
+  padding: 20px 5%;
+}
+
+.isca-banner-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.isca-banner-text strong {
+  color: #fff;
+  font-size: 15px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.isca-banner-text span {
+  color: rgba(255,255,255,0.75);
+  font-size: 13px;
+}
+
+.btn-white {
+  background: #fff;
+  color: var(--ambar);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+  cursor: pointer;
+  border: none;
+  font-family: 'Sora', sans-serif;
+}
+
+.btn-white:hover { opacity: 0.9; }
+
+/* CIDADES */
+.section-cidades {
+  padding: 80px 5%;
+  background: var(--cinza);
+}
+
+.section-header {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.section-tag {
+  display: inline-block;
+  background: var(--ambar-claro);
+  color: var(--ambar);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.section-header h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3.5vw, 40px);
+  color: var(--azul);
+  margin-bottom: 12px;
+}
+
+.section-header p {
+  color: var(--texto-suave);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+.cidades-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 8 cidades */
+  gap: 16px;
+}
+
+.cidade-card {
+  background: var(--branco);
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid transparent;
+}
+
+.cidade-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(26,58,92,0.1);
+  border-color: var(--azul-claro);
+}
+
+.cidade-num {
+  font-size: 11px;
+  color: var(--ambar);
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 0.04em;
+}
+
+.cidade-nome {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--azul);
+  margin-bottom: 6px;
+}
+
+.cidade-desc {
+  font-size: 13px;
+  color: var(--texto-suave);
+  line-height: 1.5;
+  flex: 1;
+  margin-bottom: 16px;
+}
+
+.cidade-link {
+  font-size: 12px;
+  color: var(--ambar);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* PORTFÓLIO */
+.section-portfolio {
+  padding: 80px 5%;
+  background: var(--branco);
+}
+
+.portfolio-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.imovel-card {
+  border: 1px solid #E8E6E1;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.imovel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(26,58,92,0.08);
+}
+
+.imovel-img {
+  height: 180px;
+  background: linear-gradient(135deg, var(--azul-claro) 0%, #C5D9EE 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.imovel-img svg { opacity: 0.3; }
+
+.imovel-badge {
+  position: absolute;
+  top: 12px; left: 12px;
+  background: var(--azul);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.imovel-info {
+  padding: 16px;
+}
+
+.imovel-titulo {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--azul);
+  margin-bottom: 4px;
+}
+
+.imovel-local {
+  font-size: 12px;
+  color: var(--texto-suave);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.imovel-specs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.spec {
+  display: flex;
+  flex-direction: column;
+}
+
+.spec-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--carvao);
+}
+
+.spec-label {
+  font-size: 10px;
+  color: var(--cinza-medio);
+}
+
+.imovel-preco {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ambar);
+  padding-top: 12px;
+  border-top: 1px solid #F0EEE8;
+}
+
+.imovel-preco small {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--texto-suave);
+}
+
+/* QUIZ */
+.section-quiz {
+  padding: 80px 5%;
+  background: var(--azul);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-quiz::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: rgba(42,90,140,0.4);
+}
+
+.quiz-container {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.quiz-container .section-tag {
+  background: rgba(212,130,10,0.2);
+  color: #F0A830;
+}
+
+.quiz-container h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3.5vw, 40px);
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.quiz-container p {
+  color: rgba(255,255,255,0.65);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+.quiz-step { display: none; }
+.quiz-step.active { display: block; }
+
+.quiz-question {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.quiz-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.quiz-option {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  padding: 14px 16px;
+  color: rgba(255,255,255,0.85);
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-family: 'Sora', sans-serif;
+}
+
+.quiz-option:hover,
+.quiz-option.selected {
+  background: var(--ambar);
+  border-color: var(--ambar);
+  color: #fff;
+}
+
+.quiz-progress {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.quiz-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: background 0.2s;
+}
+
+.quiz-dot.active { background: var(--ambar); }
+
+.quiz-result {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.quiz-result h3 {
+  color: var(--ambar);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.quiz-result p {
+  color: rgba(255,255,255,0.75);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* CHECKLIST */
+.section-checklist {
+  padding: 80px 5%;
+  background: var(--cinza);
+}
+
+.checklist-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.checklist-text h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3vw, 38px);
+  color: var(--azul);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.checklist-text p {
+  color: var(--texto-suave);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.checklist-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--texto-suave);
+}
+
+.check-icon {
+  width: 20px; height: 20px;
+  background: var(--azul);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checklist-form {
+  background: var(--branco);
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid #E8E6E1;
+}
+
+.checklist-form h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--azul);
+  margin-bottom: 4px;
+}
+
+.checklist-form p {
+  color: var(--texto-suave);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.form-field {
+  margin-bottom: 14px;
+}
+
+.form-field label {
+  display: block;
+  font-size: 12px;
+  color: var(--texto-suave);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.form-field input,
+.form-field select {
+  width: 100%;
+  border: 1px solid #E8E6E1;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-family: 'Sora', sans-serif;
+  color: var(--texto);
+  outline: none;
+  transition: border-color 0.2s;
+  background: var(--branco);
+}
+
+.form-field input:focus,
+.form-field select:focus { border-color: var(--azul); }
+
+.btn-full {
+  width: 100%;
+  background: var(--azul);
+  color: #fff;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  font-family: 'Sora', sans-serif;
+  transition: opacity 0.2s;
+}
+
+.btn-full:hover { opacity: 0.9; }
+
+/* SOBRE */
+.section-sobre {
+  padding: 80px 5%;
+  background: var(--branco);
+}
+
+.sobre-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.sobre-img-wrap {
+  background: var(--azul-claro);
+  border-radius: 16px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.sobre-avatar {
+  width: 120px;
+  height: 120px;
+  background: var(--azul);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: rgba(255,255,255,0.3);
+  font-family: 'DM Serif Display', serif;
+  z-index: 1;
+}
+
+.sobre-badge {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--azul);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  z-index: 2;
+}
+
+.sobre-content h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3vw, 38px);
+  color: var(--azul);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.sobre-content p {
+  color: var(--texto-suave);
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.sobre-numeros {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.sobre-num {
+  background: var(--cinza);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.sobre-num strong {
+  display: block;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--azul);
+  margin-bottom: 2px;
+}
+
+.sobre-num span {
+  font-size: 12px;
+  color: var(--texto-suave);
+}
+
+/* NEWSLETTER */
+.section-newsletter {
+  padding: 60px 5%;
+  background: var(--ambar);
+}
+
+.newsletter-inner {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletter-inner h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(24px, 3vw, 34px);
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.newsletter-inner p {
+  color: rgba(255,255,255,0.8);
+  font-size: 15px;
+  margin-bottom: 24px;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 10px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-family: 'Sora', sans-serif;
+  outline: none;
+}
+
+/* FOOTER */
+footer {
+  background: var(--carvao);
+  padding: 48px 5% 24px;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-brand p {
+  color: rgba(255,255,255,0.5);
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 12px;
+  margin-bottom: 16px;
+}
+
+.footer-col h4 {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-col ul a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  font-size: 13px;
+  transition: color 0.2s;
+}
+
+.footer-col ul a:hover { color: #fff; }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-bottom p {
+  color: rgba(255,255,255,0.3);
+  font-size: 12px;
+}
+
+.footer-creci {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.4);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* WHATSAPP FIXO */
+.wa-float {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  background: #25D366;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  text-decoration: none;
+  transition: transform 0.2s;
+  animation: pulse-wa 3s ease-in-out infinite;
+}
+
+.wa-float:hover { transform: scale(1.1); }
+
+@keyframes pulse-wa {
+  0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+  50% { box-shadow: 0 4px 32px rgba(37,211,102,0.7); }
+}
+
+/* MODAL */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26,58,92,0.7);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.open { display: flex; }
+
+.modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px;
+  max-width: 460px;
+  width: 100%;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--cinza-medio);
+  line-height: 1;
+}
+
+.modal h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--azul);
+  margin-bottom: 4px;
+}
+
+.modal p {
+  color: var(--texto-suave);
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+/* ANIMAÇÕES */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .cidades-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-card { display: none; }
+  .cidades-grid { grid-template-columns: repeat(2, 1fr); }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .checklist-inner { grid-template-columns: 1fr; }
+  .sobre-inner { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+}
+
+@media (max-width: 600px) {
+  .cidades-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .quiz-options { grid-template-columns: 1fr; }
+  .newsletter-form { flex-direction: column; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .sobre-numeros { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <rect x="2" y="10" width="16" height="8" rx="1" fill="white"/>
+        <rect x="4" y="6" width="12" height="5" rx="1" fill="rgba(255,255,255,0.6)"/>
+        <rect x="7" y="10" width="3" height="8" fill="rgba(255,255,255,0.4)"/>
+      </svg>
+    </div>
+    <div class="nav-logo-text">
+      <span><span>Galpões SP</span></span>
+      <span>Consultoria Industrial</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#cidades">Cidades</a></li>
+    <li><a href="#portfolio">Portfólio</a></li>
+    <li><a href="#sobre">Sobre Denis</a></li>
+    <li><a href="#quiz">Diagnóstico</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a href="https://wa.me/5511971467340?text=Olá+Denis,+gostaria+de+informações+sobre+galpões+no+ABC" target="_blank" class="nav-cta">WhatsApp</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-tag">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="#F0A830" stroke-width="1.5"/><circle cx="6" cy="6" r="2" fill="#F0A830"/></svg>
+        Grande São Paulo
+      </div>
+      <h1>O galpão <em>certo</em>, no SP certo.</h1>
+      <p class="hero-sub">Especialistas em locação e venda de imóveis industriais na Grande São Paulo. ABC, Guarulhos, Osasco, Cajamar, Campinas e toda a região metropolitana.</p>
+      <div class="hero-ctas">
+        <a href="#portfolio" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="8" width="12" height="6" rx="1" fill="white"/><rect x="4" y="5" width="8" height="4" rx="0.5" fill="rgba(255,255,255,0.7)"/></svg>
+          Ver galpões disponíveis
+        </a>
+        <button class="btn-secondary" onclick="abrirModal('checklist')">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="2" width="10" height="12" rx="1.5" stroke="white" stroke-width="1.2"/><line x1="5.5" y1="6" x2="10.5" y2="6" stroke="white" stroke-width="1"/><line x1="5.5" y1="8.5" x2="10.5" y2="8.5" stroke="white" stroke-width="1"/></svg>
+          Baixar guia gratuito
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong>119+</strong>
+          <span>Imóveis no portfólio</span>
+        </div>
+        <div class="hero-stat">
+          <strong>15+</strong>
+          <span>Anos no mercado</span>
+        </div>
+        <div class="hero-stat">
+          <strong>8+</strong>
+          <span>Cidades atendidas</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="hero-card-title">Simule o custo do seu galpão</div>
+        <div class="hero-card-sub">Estimativa gratuita em segundos</div>
+        <div class="calc-field">
+          <label>Região desejada</label>
+          <select id="calc-regiao">
+            <option value="">Selecione a cidade</option>
+            <option value="diadema">Diadema</option>
+            <option value="sbc">São Bernardo do Campo</option>
+            <option value="santo-andre">Santo André</option>
+            <option value="barueri">Barueri / Tamboré</option>
+            <option value="guarulhos">Guarulhos</option>
+            <option value="osasco">Osasco</option>
+            <option value="cajamar">Cajamar</option>
+            <option value="campinas">Campinas</option>
+            <option value="maua">Mauá / São Caetano</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label>Metragem necessária (m²)</label>
+          <input type="number" id="calc-metragem" placeholder="Ex: 800">
+        </div>
+        <div class="calc-field">
+          <label>Tipo de imóvel</label>
+          <select id="calc-tipo">
+            <option value="">Selecione o tipo</option>
+            <option value="industrial">Galpão Industrial</option>
+            <option value="logistico">Galpão Logístico</option>
+            <option value="comercial">Galpão Comercial</option>
+          </select>
+        </div>
+        <div class="calc-result-box" id="calc-resultado">
+          <div>
+            <div class="label">Estimativa mensal</div>
+            <div style="color:rgba(255,255,255,0.7);font-size:11px;margin-top:2px;">Preencha os campos acima</div>
+          </div>
+          <div class="value" id="calc-valor">—</div>
+        </div>
+        <button class="calc-cta" onclick="enviarCalc()">Falar com Denis sobre este imóvel →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BANNER ISCA -->
+<div class="isca-banner">
+  <div class="isca-banner-inner">
+    <div class="isca-banner-text">
+      <strong>Checklist gratuito: 12 pontos para vistoriar antes de assinar o contrato</strong>
+      <span>Evite erros caros na locação do seu galpão industrial</span>
+    </div>
+    <button class="btn-white" onclick="abrirModal('checklist')">Baixar grátis →</button>
+  </div>
+</div>
+
+<!-- CIDADES -->
+<section class="section-cidades" id="cidades">
+  <div class="section-header fade-up">
+    <div class="section-tag">Área de atuação</div>
+    <h2>Toda a Grande São Paulo na palma da mão</h2>
+    <p>Conhecemos cada bairro, cada rodovia, cada particularidade logística das principais regiões industriais da Grande SP.</p>
+  </div>
+  <div class="cidades-grid" style="grid-template-columns: repeat(4, 1fr); /* 8 cidades */">
+    <a href="/galpoes-diadema" class="cidade-card fade-up">
+      <div class="cidade-num">01 — Sede da consultoria</div>
+      <div class="cidade-nome">Diadema</div>
+      <div class="cidade-desc">Base da operação. Maior concentração de galpões industriais, com acesso à Rodovia Anchieta e Imigrantes.</div>
+      <div class="cidade-link">Ver galpões →</div>
+    </a>
+    <a href="/galpoes-sao-bernardo" class="cidade-card fade-up">
+      <div class="cidade-num">02 — Polo automotivo</div>
+      <div class="cidade-nome">São Bernardo do Campo</div>
+      <div class="cidade-desc">Grande polo industrial e logístico. Galpões de grande porte para operações robustas e distribuição regional.</div>
+      <div class="cidade-link">Ver galpões →</div>
+    </a>
+    <a href="/galpoes-santo-andre" class="cidade-card fade-up">
+      <div class="cidade-num">03 — Acesso estratégico</div>
+      <div class="cidade-nome">Santo André</div>
+      <div class="cidade-desc">Excelente acesso à Via Anchieta e ao centro de São Paulo. Opções variadas para indústria e comércio.</div>
+      <div class="cidade-link">Ver galpões →</div>
+    </a>
+    <a href="/galpoes-barueri" class="cidade-card fade-up">
+      <div class="cidade-num">04 — Região premium</div>
+      <div class="cidade-nome">Barueri / Tamboré</div>
+      <div class="cidade-desc">Condomínios logísticos de alto padrão. Acesso às Rodovias Castelo Branco e Anhanguera.</div>
+      <div class="cidade-link">Ver galpões →</div>
+    </a>
+    <a href="/galpoes-guarulhos" class="cidade-card fade-up">
+      <div class="cidade-num">05 — Maior absorção SP</div>
+      <div class="cidade-nome">Guarulhos</div>
+      <div class="cidade-desc">Líder em absorção de galpões na Grande SP. Proximidade ao Aeroporto Internacional e acesso às principais rodovias.</div>
+      <div class="cidade-link">Ver galpões →</div>
+    </a>
+    <a href="/galpoes-cajamar" class="cidade-card fade-up">
+      <div class="cidade-num">06 — Polo logístico</div>
+      <div class="cidade-nome">Cajamar</div>
+      <div class="cidade-desc">Um dos maiores polos logísticos do Brasil. Galpões Classe A com excelente custo-benefício e acesso à Anhanguera.</div>
+      <div class="cidade-link">Ver galpões →</div>
+    </a>
+    <a href="/galpoes-osasco" class="cidade-card fade-up">
+      <div class="cidade-num">07 — Zona Oeste SP</div>
+      <div class="cidade-nome">Osasco</div>
+      <div class="cidade-desc">Região industrial consolidada na zona oeste. Ótima conectividade com o centro de São Paulo e Rodovia Castello Branco.</div>
+      <div class="cidade-link">Ver galpões →</div>
+    </a>
+    <a href="/galpoes-campinas" class="cidade-card fade-up">
+      <div class="cidade-num">08 — Interior estratégico</div>
+      <div class="cidade-nome">Campinas</div>
+      <div class="cidade-desc">Hub logístico do interior paulista. Acesso às Rodovias Anhanguera, Bandeirantes e Dom Pedro I. Crescimento acelerado.</div>
+      <div class="cidade-link">Ver galpões →</div>
+    </a>
+  </div>
+</section>
+
+<!-- PORTFÓLIO -->
+<section class="section-portfolio" id="portfolio">
+  <div class="section-header fade-up">
+    <div class="section-tag">Portfólio</div>
+    <h2>Galpões disponíveis agora</h2>
+    <p>Portfólio atualizado diretamente do nosso sistema. Novos imóveis cadastrados toda semana.</p>
+  </div>
+  <div class="portfolio-grid" id="portfolio-grid">
+    <a href="#" class="imovel-card fade-up">
+      <div class="imovel-img">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect x="8" y="30" width="44" height="22" rx="2" fill="#1A3A5C"/><rect x="12" y="18" width="36" height="14" rx="1" fill="#2A5A8C"/><rect x="18" y="8" width="24" height="12" rx="1" fill="#1A3A5C" opacity="0.5"/><rect x="20" y="32" width="6" height="20" fill="#D4820A"/></svg>
+        <div class="imovel-badge">Disponível</div>
+      </div>
+      <div class="imovel-info">
+        <div class="imovel-titulo">Galpão Industrial — Campanário</div>
+        <div class="imovel-local">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="5" r="3" stroke="#888780" stroke-width="1.2"/><path d="M6 8C6 8 2 10.5 2 5a4 4 0 018 0C10 10.5 6 8 6 8z" stroke="#888780" stroke-width="1.2" fill="none"/></svg>
+          Diadema, SP
+        </div>
+        <div class="imovel-specs">
+          <div class="spec"><div class="spec-val">3.200 m²</div><div class="spec-label">Área total</div></div>
+          <div class="spec"><div class="spec-val">10m</div><div class="spec-label">Pé-direito</div></div>
+          <div class="spec"><div class="spec-val">4 docas</div><div class="spec-label">Acesso</div></div>
+        </div>
+        <div class="imovel-preco">R$ 89.600/mês <small>· R$ 28/m²</small></div>
+      </div>
+    </a>
+    <a href="#" class="imovel-card fade-up">
+      <div class="imovel-img">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect x="8" y="30" width="44" height="22" rx="2" fill="#1A3A5C"/><rect x="12" y="18" width="36" height="14" rx="1" fill="#2A5A8C"/><rect x="18" y="8" width="24" height="12" rx="1" fill="#1A3A5C" opacity="0.5"/><rect x="26" y="32" width="6" height="20" fill="#D4820A"/></svg>
+        <div class="imovel-badge">Disponível</div>
+      </div>
+      <div class="imovel-info">
+        <div class="imovel-titulo">Galpão Logístico — Piraporinha</div>
+        <div class="imovel-local">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="5" r="3" stroke="#888780" stroke-width="1.2"/><path d="M6 8C6 8 2 10.5 2 5a4 4 0 018 0C10 10.5 6 8 6 8z" stroke="#888780" stroke-width="1.2" fill="none"/></svg>
+          Diadema, SP
+        </div>
+        <div class="imovel-specs">
+          <div class="spec"><div class="spec-val">820 m²</div><div class="spec-label">Área total</div></div>
+          <div class="spec"><div class="spec-val">8m</div><div class="spec-label">Pé-direito</div></div>
+          <div class="spec"><div class="spec-val">2 docas</div><div class="spec-label">Acesso</div></div>
+        </div>
+        <div class="imovel-preco">R$ 22.960/mês <small>· R$ 28/m²</small></div>
+      </div>
+    </a>
+    <a href="#" class="imovel-card fade-up">
+      <div class="imovel-img">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect x="8" y="30" width="44" height="22" rx="2" fill="#1A3A5C"/><rect x="12" y="18" width="36" height="14" rx="1" fill="#2A5A8C"/><rect x="18" y="8" width="24" height="12" rx="1" fill="#1A3A5C" opacity="0.5"/><rect x="32" y="32" width="6" height="20" fill="#D4820A"/></svg>
+        <div class="imovel-badge">Disponível</div>
+      </div>
+      <div class="imovel-info">
+        <div class="imovel-titulo">Galpão Industrial — Tamboré</div>
+        <div class="imovel-local">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="5" r="3" stroke="#888780" stroke-width="1.2"/><path d="M6 8C6 8 2 10.5 2 5a4 4 0 018 0C10 10.5 6 8 6 8z" stroke="#888780" stroke-width="1.2" fill="none"/></svg>
+          Barueri, SP
+        </div>
+        <div class="imovel-specs">
+          <div class="spec"><div class="spec-val">1.800 m²</div><div class="spec-label">Área total</div></div>
+          <div class="spec"><div class="spec-val">12m</div><div class="spec-label">Pé-direito</div></div>
+          <div class="spec"><div class="spec-val">6 docas</div><div class="spec-label">Acesso</div></div>
+        </div>
+        <div class="imovel-preco">R$ 54.000/mês <small>· R$ 30/m²</small></div>
+      </div>
+    </a>
+  </div>
+  <div style="text-align:center;margin-top:32px;">
+    <a href="/imoveis" class="btn-primary" style="background:var(--azul);display:inline-flex;">Ver todos os galpões →</a>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="section-quiz" id="quiz">
+  <div class="quiz-container">
+    <div class="section-tag">Diagnóstico gratuito</div>
+    <h2>Qual galpão é ideal para sua empresa?</h2>
+    <p>Responda 4 perguntas rápidas e receba uma indicação personalizada de Denis Cordeiro.</p>
+
+    <div class="quiz-progress">
+      <div class="quiz-dot active" id="dot-0"></div>
+      <div class="quiz-dot" id="dot-1"></div>
+      <div class="quiz-dot" id="dot-2"></div>
+      <div class="quiz-dot" id="dot-3"></div>
+    </div>
+
+    <div class="quiz-step active" id="step-0">
+      <div class="quiz-question">Qual é o porte da sua operação?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="nextStep(0, 'Pequeno porte (até 500m²)')">Pequeno porte (até 500m²)</button>
+        <button class="quiz-option" onclick="nextStep(0, 'Médio porte (500 a 2.000m²)')">Médio porte (500–2.000m²)</button>
+        <button class="quiz-option" onclick="nextStep(0, 'Grande porte (2.000 a 5.000m²)')">Grande porte (2.000–5.000m²)</button>
+        <button class="quiz-option" onclick="nextStep(0, 'Grande porte (acima de 5.000m²)')">Acima de 5.000m²</button>
+      </div>
+    </div>
+
+    <div class="quiz-step" id="step-1">
+      <div class="quiz-question">Qual região do ABC você prefere?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="nextStep(1, 'Diadema')">Diadema</button>
+        <button class="quiz-option" onclick="nextStep(1, 'São Bernardo do Campo')">São Bernardo do Campo</button>
+        <button class="quiz-option" onclick="nextStep(1, 'Santo André')">Santo André</button>
+        <button class="quiz-option" onclick="nextStep(1, 'Barueri / Tamboré')">Barueri / Tamboré</button>
+      </div>
+    </div>
+
+    <div class="quiz-step" id="step-2">
+      <div class="quiz-question">Qual o tipo de operação?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="nextStep(2, 'Indústria / Fabricação')">Indústria / Fabricação</button>
+        <button class="quiz-option" onclick="nextStep(2, 'Logística / Distribuição')">Logística / Distribuição</button>
+        <button class="quiz-option" onclick="nextStep(2, 'E-commerce / Estoque')">E-commerce / Estoque</button>
+        <button class="quiz-option" onclick="nextStep(2, 'Comércio / Atacado')">Comércio / Atacado</button>
+      </div>
+    </div>
+
+    <div class="quiz-step" id="step-3">
+      <div class="quiz-question">Qual o prazo para locação?</div>
+      <div class="quiz-options">
+        <button class="quiz-option" onclick="nextStep(3, 'Urgente (até 30 dias)')">Urgente (até 30 dias)</button>
+        <button class="quiz-option" onclick="nextStep(3, 'Curto prazo (1-3 meses)')">Curto prazo (1–3 meses)</button>
+        <button class="quiz-option" onclick="nextStep(3, 'Médio prazo (3-6 meses)')">Médio prazo (3–6 meses)</button>
+        <button class="quiz-option" onclick="nextStep(3, 'Ainda estou pesquisando')">Ainda estou pesquisando</button>
+      </div>
+    </div>
+
+    <div class="quiz-step" id="step-result">
+      <div class="quiz-result">
+        <h3>Diagnóstico pronto!</h3>
+        <p id="quiz-resumo">Com base nas suas respostas, Denis pode te indicar os melhores galpões disponíveis no ABC agora mesmo.</p>
+        <a href="#" id="quiz-wa" class="btn-primary" style="display:inline-flex;margin:0 auto;">Receber indicação pelo WhatsApp →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHECKLIST LEAD -->
+<section class="section-checklist" id="contato">
+  <div class="checklist-inner">
+    <div class="checklist-text fade-up">
+      <div class="section-tag">Guia gratuito</div>
+      <h2>12 pontos para vistoriar antes de assinar o contrato</h2>
+      <p>Baixe o checklist completo e evite erros que custam caro na locação de galpões industriais. Usado por mais de 200 empresas no Grande ABC.</p>
+      <div class="checklist-items">
+        <div class="check-item">
+          <div class="check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          Estrutura e pé-direito adequados
+        </div>
+        <div class="check-item">
+          <div class="check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          Capacidade elétrica e tipo de acesso
+        </div>
+        <div class="check-item">
+          <div class="check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          Condições do piso e docas
+        </div>
+        <div class="check-item">
+          <div class="check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          Cláusulas contratuais essenciais
+        </div>
+        <div class="check-item">
+          <div class="check-icon"><svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+          Licenças e regularidade do imóvel
+        </div>
+      </div>
+    </div>
+    <div class="checklist-form fade-up">
+      <h3>Receber checklist grátis</h3>
+      <p>Preencha seus dados e Denis te envia o material direto no WhatsApp.</p>
+      <div class="form-field">
+        <label>Nome completo</label>
+        <input type="text" id="lead-nome" placeholder="Seu nome">
+      </div>
+      <div class="form-field">
+        <label>WhatsApp</label>
+        <input type="tel" id="lead-wa" placeholder="(11) 9 0000-0000">
+      </div>
+      <div class="form-field">
+        <label>Empresa</label>
+        <input type="text" id="lead-empresa" placeholder="Nome da sua empresa">
+      </div>
+      <div class="form-field">
+        <label>Interesse</label>
+        <select id="lead-interesse">
+          <option value="">O que você procura?</option>
+          <option value="alugar">Alugar galpão</option>
+          <option value="comprar">Comprar galpão</option>
+          <option value="vender">Vender/locar meu imóvel</option>
+          <option value="info">Só quero informações</option>
+        </select>
+      </div>
+      <button class="btn-full" onclick="enviarLead()">Receber checklist pelo WhatsApp →</button>
+      <p style="font-size:11px;color:var(--cinza-medio);text-align:center;margin-top:10px;">Sem spam. Denis responde pessoalmente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE DENIS -->
+<section class="section-sobre" id="sobre">
+  <div class="sobre-inner">
+    <div class="sobre-img-wrap fade-up">
+      <div class="sobre-avatar">DC</div>
+      <div class="sobre-badge">Denis Cordeiro · CRECI 021527-J</div>
+    </div>
+    <div class="sobre-content fade-up">
+      <div class="section-tag">Quem é Denis Cordeiro</div>
+      <h2>Mais de 15 anos especializando-se no mercado industrial da Grande SP</h2>
+      <p>Denis Cordeiro é gestor imobiliário industrial com profundo conhecimento do mercado de galpões no Grande ABC. Com sede em Diadema, atende empresas de todos os portes que precisam de espaço industrial estratégico.</p>
+      <p>Diferente de portais e corretores generalistas, Denis conhece cada bairro, cada via de acesso, cada peculiaridade das regiões industriais da Grande São Paulo.</p>
+      <div class="sobre-numeros">
+        <div class="sobre-num">
+          <strong>119+</strong>
+          <span>Imóveis no portfólio</span>
+        </div>
+        <div class="sobre-num">
+          <strong>15+</strong>
+          <span>Anos de mercado</span>
+        </div>
+        <div class="sobre-num">
+          <strong<strong>8+</strong>
+          <span>Cidades atendidas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section-newsletter">
+  <div class="newsletter-inner fade-up">
+    <h2>Receba novos galpões em primeira mão</h2>
+    <p>Cadastre seu WhatsApp e seja avisado antes de todo mundo quando entrar um imóvel com o seu perfil.</p>
+    <div class="newsletter-form">
+      <input type="tel" id="nl-wa" placeholder="(11) 9 0000-0000">
+      <button class="btn-white" onclick="enviarNewsletter()">Quero receber →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo" style="margin-bottom:0;">
+          <div class="nav-logo-icon">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="10" width="16" height="8" rx="1" fill="white"/><rect x="4" y="6" width="12" height="5" rx="1" fill="rgba(255,255,255,0.6)"/><rect x="7" y="10" width="3" height="8" fill="rgba(255,255,255,0.4)"/></svg>
+          </div>
+          <div class="nav-logo-text">
+            <span><span>Galpões SP</span></span>
+            <span>Consultoria Industrial</span>
+          </div>
+        </div>
+        <p>Especialistas em locação e venda de imóveis industriais na Grande São Paulo. ABC, Guarulhos, Osasco, Cajamar e Campinas.</p>
+        <a href="https://wa.me/5511971467340" target="_blank" class="btn-primary" style="font-size:13px;padding:10px 18px;display:inline-flex;">WhatsApp Denis</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cidades</h4>
+        <ul>
+          <li><a href="/galpoes-diadema">Galpões em Diadema</a></li>
+          <li><a href="/galpoes-sao-bernardo">Galpões em São Bernardo</a></li>
+          <li><a href="/galpoes-guarulhos">Galpões em Guarulhos</a></li>
+          <li><a href="/galpoes-cajamar">Galpões em Cajamar</a></li>
+          <li><a href="/galpoes-osasco">Galpões em Osasco</a></li>
+          <li><a href="/galpoes-campinas">Galpões em Campinas</a></li>
+          <li><a href="/galpoes-santo-andre">Galpões em Santo André</a></li>
+          <li><a href="/galpoes-barueri">Galpões em Barueri</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Serviços</h4>
+        <ul>
+          <li><a href="#">Locação de galpões</a></li>
+          <li><a href="#">Venda de galpões</a></li>
+          <li><a href="#">Consultoria industrial</a></li>
+          <li><a href="#">Avaliação de imóveis</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5511971467340" target="_blank">(11) 97146-7340</a></li>
+          <li><a href="#">Diadema – SP (Centro)</a></li>
+          <li><a href="#">Rua Manoel da Nóbrega, 598</a></li>
+          <li><a href="/blog">Blog do mercado</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Galpões SP Consultoria. Todos os direitos reservados.</p>
+      <span class="footer-creci">CRECI 021527-J</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FIXO -->
+<a href="https://wa.me/5511971467340?text=Olá+Denis,+encontrei+o+site+e+gostaria+de+informações+sobre+galpões+no+ABC" target="_blank" class="wa-float" title="Falar com Denis">
+  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+    <path d="M14 2C7.373 2 2 7.373 2 14c0 2.074.537 4.02 1.48 5.71L2 26l6.46-1.45A11.94 11.94 0 0014 26c6.627 0 12-5.373 12-12S20.627 2 14 2z" fill="white"/>
+    <path d="M10.5 8.5c-.3-.7-.6-.7-.9-.7h-.8c-.3 0-.7.1-1 .5-.4.4-1.3 1.3-1.3 3.1 0 1.8 1.3 3.6 1.5 3.8.2.3 2.6 4 6.3 5.5 3.1 1.2 3.8 1 4.4.9.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.2-.4-.3-.8-.5-.4-.2-2.1-1-2.5-1.2-.3-.2-.6-.2-.9.2-.3.4-1 1.2-1.3 1.5-.2.2-.5.3-.9.1-.4-.2-1.8-.7-3.4-2.1-1.3-1.1-2.1-2.5-2.4-2.9-.2-.4 0-.6.2-.8l.6-.7c.2-.2.2-.4.3-.7.1-.2 0-.5-.1-.7z" fill="#25D366"/>
+  </svg>
+</a>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-checklist">
+  <div class="modal">
+    <button class="modal-close" onclick="fecharModal()">✕</button>
+    <h3>Receber checklist gratuito</h3>
+    <p>Deixe seu WhatsApp e Denis te envia o checklist completo agora mesmo.</p>
+    <div class="form-field">
+      <label>Nome</label>
+      <input type="text" id="m-nome" placeholder="Seu nome completo">
+    </div>
+    <div class="form-field">
+      <label>WhatsApp</label>
+      <input type="tel" id="m-wa" placeholder="(11) 9 0000-0000">
+    </div>
+    <div class="form-field">
+      <label>Empresa</label>
+      <input type="text" id="m-empresa" placeholder="Nome da empresa">
+    </div>
+    <button class="btn-full" onclick="enviarModal()">Receber checklist agora →</button>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script>
+// Calculadora
+const precos = {
+  diadema: { industrial: 28, logistico: 26, comercial: 22 },
+  sbc: { industrial: 30, logistico: 28, comercial: 24 },
+  'santo-andre': { industrial: 27, logistico: 25, comercial: 21 },
+  barueri: { industrial: 32, logistico: 30, comercial: 26 },
+  guarulhos: { industrial: 32, logistico: 30, comercial: 26 },
+  cajamar: { industrial: 26, logistico: 25, comercial: 20 },
+  osasco: { industrial: 29, logistico: 27, comercial: 23 },
+  campinas: { industrial: 24, logistico: 22, comercial: 19 },
+  maua: { industrial: 26, logistico: 24, comercial: 20 }
+};
+
+function calcular() {
+  const regiao = document.getElementById('calc-regiao').value;
+  const metragem = parseFloat(document.getElementById('calc-metragem').value);
+  const tipo = document.getElementById('calc-tipo').value;
+  if (!regiao || !metragem || !tipo) return;
+  const preco = precos[regiao]?.[tipo] || 28;
+  const min = Math.round(metragem * preco * 0.9);
+  const max = Math.round(metragem * preco * 1.1);
+  document.getElementById('calc-valor').innerHTML = `R$ ${min.toLocaleString('pt-BR')}–${max.toLocaleString('pt-BR')}`;
+}
+
+['calc-regiao','calc-metragem','calc-tipo'].forEach(id => {
+  document.getElementById(id)?.addEventListener('change', calcular);
+  document.getElementById(id)?.addEventListener('input', calcular);
+});
+
+function enviarCalc() {
+  const regiao = document.getElementById('calc-regiao').options[document.getElementById('calc-regiao').selectedIndex]?.text || '';
+  const metragem = document.getElementById('calc-metragem').value || '';
+  const tipo = document.getElementById('calc-tipo').options[document.getElementById('calc-tipo').selectedIndex]?.text || '';
+  const msg = `Olá Denis! Usei a calculadora do site e tenho interesse em um ${tipo} de ${metragem}m² em ${regiao}. Podemos conversar?`;
+  window.open(`https://wa.me/5511971467340?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// Quiz
+let quizRespostas = [];
+let quizStep = 0;
+
+function nextStep(step, resposta) {
+  quizRespostas[step] = resposta;
+  document.getElementById(`step-${step}`).classList.remove('active');
+  document.getElementById(`dot-${step}`).classList.remove('active');
+  const next = step + 1;
+  if (next <= 3) {
+    document.getElementById(`step-${next}`).classList.add('active');
+    document.getElementById(`dot-${next}`).classList.add('active');
+  } else {
+    document.getElementById('step-result').classList.add('active');
+    const resumo = `Operação ${quizRespostas[0]} · ${quizRespostas[1]} · ${quizRespostas[2]} · Prazo: ${quizRespostas[3]}`;
+    const msg = `Olá Denis! Fiz o diagnóstico do site: ${resumo}. Pode me indicar galpões disponíveis?`;
+    document.getElementById('quiz-wa').href = `https://wa.me/5511971467340?text=${encodeURIComponent(msg)}`;
+  }
+}
+
+// Leads
+function salvarLead(dados) {
+  // Envia lead para o Vista CRM
+  if (typeof API !== "undefined") API.enviarLead(dados);
+  
+  // Aqui integrará com Vista CRM via API
+}
+
+function enviarLead() {
+  const nome = document.getElementById('lead-nome').value;
+  const wa = document.getElementById('lead-wa').value;
+  const empresa = document.getElementById('lead-empresa').value;
+  const interesse = document.getElementById('lead-interesse').value;
+  if (!nome || !wa) { alert('Por favor, preencha nome e WhatsApp.'); return; }
+  salvarLead({ nome, wa, empresa, interesse, origem: 'checklist-secao' });
+  const msg = `Olá Denis! Meu nome é ${nome}, da empresa ${empresa}. Tenho interesse em ${interesse} um galpão e gostaria de receber o checklist. Meu WhatsApp: ${wa}`;
+  window.open(`https://wa.me/5511971467340?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function enviarModal() {
+  const nome = document.getElementById('m-nome').value;
+  const wa = document.getElementById('m-wa').value;
+  const empresa = document.getElementById('m-empresa').value;
+  if (!nome || !wa) { alert('Por favor, preencha nome e WhatsApp.'); return; }
+  salvarLead({ nome, wa, empresa, origem: 'modal-checklist' });
+  const msg = `Olá Denis! Meu nome é ${nome}${empresa ? ', da ' + empresa : ''}. Gostaria de receber o checklist de vistoria de galpões.`;
+  window.open(`https://wa.me/5511971467340?text=${encodeURIComponent(msg)}`, '_blank');
+  fecharModal();
+}
+
+function enviarNewsletter() {
+  const wa = document.getElementById('nl-wa').value;
+  if (!wa) { alert('Por favor, informe seu WhatsApp.'); return; }
+  salvarLead({ wa, origem: 'newsletter' });
+  const msg = `Olá Denis! Quero receber alertas de novos galpões disponíveis no ABC. Meu WhatsApp: ${wa}`;
+  window.open(`https://wa.me/5511971467340?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// Modal
+function abrirModal(tipo) {
+  document.getElementById(`modal-${tipo}`).classList.add('open');
+}
+
+function fecharModal() {
+  document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
+}
+
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) fecharModal();
+  });
+});
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Carregar imóveis reais do Vista CRM
+if (typeof API !== 'undefined') {
+  API.renderizarPortfolio('portfolio-grid');
+}
+</script>
+</body>
+</html>

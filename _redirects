@@ -1,0 +1,6 @@
+/api/vista/*  https://dncconsu-rest.vistahost.com.br/:splat  200
+
+/imovel/:codigo  /imovel.html  200
+/parceiros       /parceiros.html  200
+/proprietarios   /parceiros.html  200
+/investidores    /parceiros.html  200
