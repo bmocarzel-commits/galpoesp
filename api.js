@@ -10,21 +10,18 @@ const API = {
   async listarImoveis(filtros = {}) {
     const pesquisa = JSON.stringify({
       fields: [
-        'Codigo', 'Categoria', 'Cidade', 'Bairro', 'Endereco',
+        'Codigo', 'Categoria', 'Cidade', 'Bairro',
         'AreaTotal', 'AreaPrivativa', 'ValorLocacao', 'ValorVenda',
-        'PeDireito', 'Docas', 'Situacao', 'FotoDestaque', 'Destaque'
+        'PeDireito', 'Docas', 'Situacao', 'FotoDestaque'
       ],
-      filter: { ...filtros },
-      paginacao: { pagina: filtros.pagina || 1, quantidade: filtros.quantidade || 9 },
-      Order: [{ Destaque: 'desc', Codigo: 'desc' }]
+      paginacao: { pagina: 1, quantidade: 9 },
+      Order: [{ Codigo: 'desc' }]
     });
 
     try {
-      const url = this.url('imoveis/listar', { pesquisa });
-      console.log('Buscando:', url);
-      const resp = await fetch(url);
-      const data = await resp.json();
-      console.log('Resposta:', data);
+      const resp = await fetch(this.url('imoveis/listar', { pesquisa }));
+      const text = await resp.text();
+      const data = JSON.parse(text);
       return data;
     } catch (err) {
       console.error('Erro:', err);
@@ -32,25 +29,94 @@ const API = {
     }
   },
 
-  async detalhesImovel(codigo) {
-    const pesquisa = JSON.stringify({
-      fields: [
-        'Codigo', 'Categoria', 'Cidade', 'Bairro', 'Endereco',
-        'AreaTotal', 'AreaPrivativa', 'ValorLocacao', 'ValorVenda',
-        'PeDireito', 'Docas', 'Descricao', 'Situacao',
-        'FotoDestaque',
-        { fotos: ['Foto', 'FotoPequena', 'Destaque'] }
-      ]
-    });
+  formatarValor(val) {
+    if (!val || val === '0' || val === '') return null;
+    const num = parseFloat(val);
+    if (isNaN(num) || num === 0) return null;
+    return num.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 });
+  },
 
-    try {
-      const url = this.url('imoveis/detalhes', { pesquisa, imovel: codigo });
-      const resp = await fetch(url);
-      return await resp.json();
-    } catch (err) {
-      console.error('Erro:', err);
-      return null;
+  formatarArea(val) {
+    if (!val || val === '0' || val === '') return null;
+    const num = parseFloat(val);
+    if (isNaN(num) || num === 0) return null;
+    return `${num.toLocaleString('pt-BR')} m²`;
+  },
+
+  gerarCardImovel(imovel) {
+    const foto = imovel.FotoDestaque || null;
+    const preco = this.formatarValor(imovel.ValorLocacao) || this.formatarValor(imovel.ValorVenda) || 'Consultar';
+    const area = this.formatarArea(imovel.AreaTotal) || this.formatarArea(imovel.AreaPrivativa) || '—';
+    const pe = imovel.PeDireito ? `${imovel.PeDireito}m` : '—';
+    const docas = imovel.Docas ? `${imovel.Docas} docas` : '—';
+    const categoria = (imovel.Categoria || 'Galpão').replace(/\u00e3/g,'ã').replace(/\u00e3o/g,'ão').replace(/\u00e9/g,'é');
+    const cidade = (imovel.Cidade || '').replace(/\u00e3/g,'ã').replace(/\u00e9/g,'é').replace(/\u00e3o/g,'ão');
+    const bairro = (imovel.Bairro || '').replace(/\u00e3/g,'ã').replace(/\u00e9/g,'é').replace(/\u00e3o/g,'ão');
+    const titulo = `${categoria} — ${bairro || cidade}`;
+    const situacao = imovel.Situacao || 'Disponível';
+
+    return `
+      <a href="imovel.html?codigo=${imovel.Codigo}" class="imovel-card">
+        <div class="imovel-img" style="${foto ? `background-image:url('${foto}');background-size:cover;background-position:center;` : 'background:linear-gradient(135deg,#EBF2FA,#C5D9EE);'}">
+          ${!foto ? `<svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+            <rect x="8" y="30" width="44" height="22" rx="2" fill="#1A3A5C"/>
+            <rect x="12" y="18" width="36" height="14" rx="1" fill="#2A5A8C"/>
+            <rect x="20" y="32" width="6" height="20" fill="#D4820A"/>
+          </svg>` : ''}
+          <div class="imovel-badge">${situacao}</div>
+        </div>
+        <div class="imovel-info">
+          <div class="imovel-titulo">${titulo}</div>
+          <div class="imovel-local">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <circle cx="6" cy="5" r="3" stroke="#888780" stroke-width="1.2"/>
+              <path d="M6 8C6 8 2 10.5 2 5a4 4 0 018 0C10 10.5 6 8 6 8z" stroke="#888780" stroke-width="1.2" fill="none"/>
+            </svg>
+            ${bairro ? bairro + ', ' : ''}${cidade}
+          </div>
+          <div class="imovel-specs">
+            <div class="spec"><div class="spec-val">${area}</div><div class="spec-label">Área total</div></div>
+            <div class="spec"><div class="spec-val">${pe}</div><div class="spec-label">Pé-direito</div></div>
+            <div class="spec"><div class="spec-val">${docas}</div><div class="spec-label">Docas</div></div>
+          </div>
+          <div class="imovel-preco">${preco}<small> /mês</small></div>
+        </div>
+      </a>`;
+  },
+
+  async renderizarPortfolio(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = `
+      <div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">
+        <div style="margin-bottom:8px;">Carregando imóveis...</div>
+        <div style="width:32px;height:32px;border:3px solid #EBF2FA;border-top-color:#1A3A5C;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto;"></div>
+      </div>
+      <style>@keyframes spin{to{transform:rotate(360deg)}}</style>`;
+
+    const data = await this.listarImoveis();
+
+    if (!data) {
+      container.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">Erro ao carregar imóveis.</div>`;
+      return;
     }
+
+    // Dados chegam como {"1":{...},"2":{...},...}
+    const imoveis = Object.values(data).filter(i => i && i.Codigo);
+
+    if (imoveis.length === 0) {
+      container.innerHTML = `
+        <div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">
+          Nenhum imóvel disponível no momento.<br>
+          <a href="https://wa.me/${CONFIG.whatsapp}" target="_blank" style="color:#1A3A5C;font-weight:600;">
+            Fale com Denis pelo WhatsApp →
+          </a>
+        </div>`;
+      return;
+    }
+
+    container.innerHTML = imoveis.map(i => this.gerarCardImovel(i)).join('');
   },
 
   async enviarLead(dados) {
@@ -65,7 +131,6 @@ const API = {
       }
     };
     if (dados.codigoImovel) cadastro.lead.anuncio = dados.codigoImovel;
-
     try {
       const resp = await fetch(this.url('leads/cadastro'), {
         method: 'POST',
@@ -77,89 +142,6 @@ const API = {
       console.error('Erro lead:', err);
       return null;
     }
-  },
-
-  formatarValor(val) {
-    if (!val || val === '0') return null;
-    return parseFloat(val).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 0 });
-  },
-
-  formatarArea(val) {
-    if (!val || val === '0') return null;
-    return `${parseFloat(val).toLocaleString('pt-BR')} m²`;
-  },
-
-  gerarCardImovel(imovel) {
-    const foto = imovel.FotoDestaque || null;
-    const preco = this.formatarValor(imovel.ValorLocacao) || this.formatarValor(imovel.ValorVenda) || 'Consultar';
-    const area = this.formatarArea(imovel.AreaTotal) || this.formatarArea(imovel.AreaPrivativa) || '—';
-    const pe = imovel.PeDireito ? `${imovel.PeDireito}m` : '—';
-    const docas = imovel.Docas ? `${imovel.Docas} docas` : '—';
-    const titulo = `${imovel.Categoria || 'Galpão'} — ${imovel.Bairro || imovel.Cidade || ''}`;
-
-    return `
-      <a href="imovel.html?codigo=${imovel.Codigo}" class="imovel-card">
-        <div class="imovel-img" style="${foto ? `background-image:url('${foto}');background-size:cover;background-position:center;` : ''}">
-          ${!foto ? `<svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-            <rect x="8" y="30" width="44" height="22" rx="2" fill="#1A3A5C"/>
-            <rect x="12" y="18" width="36" height="14" rx="1" fill="#2A5A8C"/>
-            <rect x="20" y="32" width="6" height="20" fill="#D4820A"/>
-          </svg>` : ''}
-          <div class="imovel-badge">${imovel.Situacao || 'Disponível'}</div>
-        </div>
-        <div class="imovel-info">
-          <div class="imovel-titulo">${titulo}</div>
-          <div class="imovel-local">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <circle cx="6" cy="5" r="3" stroke="#888780" stroke-width="1.2"/>
-              <path d="M6 8C6 8 2 10.5 2 5a4 4 0 018 0C10 10.5 6 8 6 8z" stroke="#888780" stroke-width="1.2" fill="none"/>
-            </svg>
-            ${imovel.Bairro ? imovel.Bairro + ', ' : ''}${imovel.Cidade || ''}
-          </div>
-          <div class="imovel-specs">
-            <div class="spec"><div class="spec-val">${area}</div><div class="spec-label">Área total</div></div>
-            <div class="spec"><div class="spec-val">${pe}</div><div class="spec-label">Pé-direito</div></div>
-            <div class="spec"><div class="spec-val">${docas}</div><div class="spec-label">Docas</div></div>
-          </div>
-          <div class="imovel-preco">${preco}<small> /mês</small></div>
-        </div>
-      </a>`;
-  },
-
-  async renderizarPortfolio(containerId, filtros = {}) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-
-    container.innerHTML = `
-      <div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">
-        <div style="margin-bottom:8px;">Carregando imóveis...</div>
-        <div style="width:32px;height:32px;border:3px solid #EBF2FA;border-top-color:#1A3A5C;border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto;"></div>
-      </div>
-      <style>@keyframes spin{to{transform:rotate(360deg)}}</style>`;
-
-    const data = await this.listarImoveis(filtros);
-
-    if (!data || Object.keys(data).length === 0) {
-      container.innerHTML = `
-        <div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">
-          Nenhum imóvel disponível no momento.<br>
-          <a href="https://wa.me/${CONFIG.whatsapp}" target="_blank"
-             style="color:#1A3A5C;font-weight:600;margin-top:8px;display:inline-block;">
-            Fale com Denis pelo WhatsApp →
-          </a>
-        </div>`;
-      return;
-    }
-
-    // A API retorna objeto com chaves numéricas
-    const imoveis = data && typeof data === "object" && !Array.isArray(data)
-      ? Object.values(data)
-      : data;
-
-    container.innerHTML = imoveis
-      .filter(i => i && i.Codigo)
-      .map(imovel => this.gerarCardImovel(imovel))
-      .join('');
   }
 };
 
