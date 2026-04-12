@@ -1,9 +1,9 @@
 const API = {
 
   url(endpoint, params = {}) {
-    let url = `/.netlify/functions/vista?endpoint=${endpoint}`;
+        let url = `/api/vista?endpoint=${endpoint}`;
     if (params.pesquisa) url += `&pesquisa=${encodeURIComponent(params.pesquisa)}`;
-    if (params.imovel) url += `&imovel=${params.imovel}`;
+    if (params.imovel) url += `&imovel${params.imovel}`;
     return url;
   },
 
