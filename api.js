@@ -1,10 +1,22 @@
 const API = {
 
   url(endpoint, params = {}) {
-        let url = `/api/vista?endpoint=${endpoint}`;
+    let url = `/api/vista?endpoint=${endpoint}`;
     if (params.pesquisa) url += `&pesquisa=${encodeURIComponent(params.pesquisa)}`;
-    if (params.imovel) url += `&imovel${params.imovel}`;
+    if (params.imovel) url += `&imovel=${params.imovel}`;
     return url;
+  },
+
+  async detalhesImovel(codigo) {
+    try {
+      const resp = await fetch(this.url('imoveis/detalhes', { imovel: codigo }));
+      const text = await resp.text();
+      const data = JSON.parse(text);
+      return { imovel: data };
+    } catch (err) {
+      console.error('Erro ao carregar imóvel:', err);
+      return null;
+    }
   },
 
   async listarImoveis() {
@@ -72,38 +84,37 @@ const API = {
     const titulo = `${categoria} — ${bairro || cidade}`;
 
     return `
-      <a href="imovel.html?codigo=${imovel.Codigo}" class="imovel-card">
-        <div class="imovel-img" style="${foto ? `background-image:url('${foto}');background-size:cover;background-position:center;` : 'background:linear-gradient(135deg,#EBF2FA,#C5D9EE);'}">
-          ${!foto ? `<svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-            <rect x="8" y="30" width="44" height="22" rx="2" fill="#1A3A5C"/>
-            <rect x="12" y="18" width="36" height="14" rx="1" fill="#2A5A8C"/>
-            <rect x="20" y="32" width="6" height="20" fill="#D4820A"/>
-          </svg>` : ''}
-          <div class="imovel-badge">Disponível</div>
+    <a href="imovel.html?codigo=${imovel.Codigo}" class="imovel-card">
+      <div class="imovel-img" style="${foto ? `background-image:url('${foto}');background-size:cover;background-position:center;` : 'background:linear-gradient(135deg,#EBF2FA,#C5D9EE);'}">
+        ${!foto ? `<svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+          <rect x="8" y="30" width="44" height="22" rx="2" fill="#1A3A5C"/>
+          <rect x="12" y="18" width="36" height="14" rx="1" fill="#2A5A8C"/>
+          <rect x="20" y="32" width="6" height="20" fill="#D4820A"/>
+        </svg>` : ''}
+        <div class="imovel-badge">Disponível</div>
+      </div>
+      <div class="imovel-info">
+        <div class="imovel-titulo">${titulo}</div>
+        <div class="imovel-local">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <circle cx="6" cy="5" r="3" stroke="#888780" stroke-width="1.2"/>
+            <path d="M6 8C6 8 2 10.5 2 5a4 4 0 018 0C10 10.5 6 8 6 8z" stroke="#888780" stroke-width="1.2" fill="none"/>
+          </svg>
+          ${bairro ? bairro + ', ' : ''}${cidade}
         </div>
-        <div class="imovel-info">
-          <div class="imovel-titulo">${titulo}</div>
-          <div class="imovel-local">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <circle cx="6" cy="5" r="3" stroke="#888780" stroke-width="1.2"/>
-              <path d="M6 8C6 8 2 10.5 2 5a4 4 0 018 0C10 10.5 6 8 6 8z" stroke="#888780" stroke-width="1.2" fill="none"/>
-            </svg>
-            ${bairro ? bairro + ', ' : ''}${cidade}
-          </div>
-          <div class="imovel-specs">
-            <div class="spec"><div class="spec-val">${area}</div><div class="spec-label">Área total</div></div>
-            <div class="spec"><div class="spec-val">${pe}</div><div class="spec-label">Pé-direito</div></div>
-            <div class="spec"><div class="spec-val">${docas}</div><div class="spec-label">Docas</div></div>
-          </div>
-          <div class="imovel-preco">${preco}<small> /mês</small></div>
+        <div class="imovel-specs">
+          <div class="spec"><div class="spec-val">${area}</div><div class="spec-label">Área total</div></div>
+          <div class="spec"><div class="spec-val">${pe}</div><div class="spec-label">Pé-direito</div></div>
+          <div class="spec"><div class="spec-val">${docas}</div><div class="spec-label">Docas</div></div>
         </div>
-      </a>`;
+        <div class="imovel-preco">${preco}<small> /mês</small></div>
+      </div>
+    </a>`;
   },
 
   async renderizarPortfolio(containerId) {
     const container = document.getElementById(containerId);
     if (!container) return;
-
     container.innerHTML = `
       <div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">
         <div style="margin-bottom:8px;">Carregando imóveis...</div>
@@ -112,13 +123,11 @@ const API = {
       <style>@keyframes spin{to{transform:rotate(360deg)}}</style>`;
 
     const data = await this.listarImoveis();
-
     if (!data || typeof data !== 'object') {
       container.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px;color:#888;">Erro ao carregar imóveis.</div>`;
       return;
     }
 
-    // Filtra apenas objetos com Codigo válido
     const imoveis = Object.values(data).filter(i => i && typeof i === 'object' && i.Codigo);
     console.log('Imóveis encontrados:', imoveis.length);
 
@@ -139,15 +148,17 @@ const API = {
   async enviarLead(dados) {
     const cadastro = {
       lead: {
-        nome:      dados.nome      || '',
-        fone:      dados.fone      || dados.whatsapp || '',
-        email:     dados.email     || '',
-        mensagem:  dados.mensagem  || '',
-        veiculo:   dados.origem    || 'Site Galpões SP',
+        nome: dados.nome || '',
+        fone: dados.fone || dados.whatsapp || '',
+        email: dados.email || '',
+        mensagem: dados.mensagem || '',
+        veiculo: dados.origem || 'Site Galpões SP',
         interesse: dados.interesse || 'Locação',
       }
     };
+
     if (dados.codigoImovel) cadastro.lead.anuncio = dados.codigoImovel;
+
     try {
       const resp = await fetch(this.url('leads/cadastro'), {
         method: 'POST',
