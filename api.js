@@ -9,10 +9,22 @@ const API = {
 
   async detalhesImovel(codigo) {
     try {
-      const resp = await fetch(this.url('imoveis/detalhes', { imovel: codigo }));
+      const pesquisa = JSON.stringify({
+        fields: [
+          'Codigo', 'Categoria', 'Cidade', 'Bairro',
+          'AreaTotal', 'AreaPrivativa', 'ValorLocacao', 'ValorVenda',
+          'FotoDestaque', 'Situacao', 'Piso',
+          'Caracteristicas', 'InfraEstrutura'
+        ],
+        filter: { Codigo: [String(codigo)] },
+        paginacao: { pagina: 1, quantidade: 1 }
+      });
+      const resp = await fetch(this.url('imoveis/listar', { pesquisa }));
       const text = await resp.text();
       const data = JSON.parse(text);
-      return { imovel: data };
+      const imovel = Object.values(data).find(i => i && typeof i === 'object' && i.Codigo);
+      if (!imovel) return null;
+      return { imovel };
     } catch (err) {
       console.error('Erro ao carregar imóvel:', err);
       return null;
