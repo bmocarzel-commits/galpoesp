@@ -208,8 +208,8 @@ async function carregarImovel() {
         <div class="specs-grid">
           <div class="spec-item"><div class="val">${area}</div><div class="lbl">Área total</div></div>
                         <div class="spec-item"><div class="val">${areaConstruida}</div><div class="lbl">Área construída</div></div>
-          ${pe !== '—' ? `<div class="spec-item"><div class="val">${pe}</div><div class="lbl">Pé-direito</div></div>` : ''}
-          ${docas !== '—' ? `<div class="spec-item"><div class="val">${docas}</div><div class="lbl">Docas</div></div>` : ''}
+          ${pe !== '—' ? '<div class="spec-item"><div class="val">' + pe + '</div><div class="lbl">Pé-direito</div></div>' : ''}
+          ${docas !== '—' ? '<div class="spec-item"><div class="val">' + docas + '</div><div class="lbl">Docas</div></div>' : ''}
           <div class="spec-item"><div class="val">${im.Situacao || 'Disponível'}</div><div class="lbl">Situação</div></div>
           ${im.AVCB ? `<div class="spec-item"><div class="val">${im.AVCB}</div><div class="lbl">AVCB</div></div>` : ''}
           ${im.Piso ? `<div class="spec-item"><div class="val">${im.Piso}</div><div class="lbl">Tipo de piso</div></div>` : ''}
