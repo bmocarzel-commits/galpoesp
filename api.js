@@ -11,19 +11,51 @@ const API = {
     try {
       const pesquisa = JSON.stringify({
         fields: [
-          'Codigo', 'Categoria', 'Cidade', 'Bairro',
-          'AreaTotal', 'AreaPrivativa', 'ValorLocacao', 'ValorVenda',
-          'FotoDestaque', 'Situacao', 'Piso',
+          'Codigo', 'Categoria', 'Status', 'Cidade', 'Bairro',
+          'AreaTotal', 'AreaPrivativa', 'AreaConstruida',
+          'ValorLocacao', 'ValorVenda',
+          'FotoDestaque', 'FotoDestaquePequena',
+          'Situacao', 'Piso', 'Finalidade',
+          'DescricaoWeb', 'DescricaoEmpreendimento',
+          'Endereco', 'Numero', 'Complemento', 'CEP', 'UF',
           'Caracteristicas', 'InfraEstrutura'
         ],
         filter: { Codigo: [String(codigo)] },
         paginacao: { pagina: 1, quantidade: 1 }
       });
+
       const resp = await fetch(this.url('imoveis/listar', { pesquisa }));
       const text = await resp.text();
       const data = JSON.parse(text);
-      const imovel = Object.values(data).find(i => i && typeof i === 'object' && i.Codigo);
-      if (!imovel) return null;
+
+      const raw = Object.values(data).find(i => i && typeof i === 'object' && i.Codigo);
+      if (!raw) return null;
+
+      // Map fields expected by imovel.html
+      const descricao = raw.DescricaoWeb || raw.DescricaoEmpreendimento || '';
+
+      // Try to extract pe-direito from description
+      let peDireito = null;
+      const peMatch = descricao.match(/[Pp][eé]\s*[Dd]ireito[:\s]*(\d+[\.,]?\d*)\s*m/i);
+      if (peMatch) peDireito = peMatch[1].replace(',', '.');
+
+      // Try to extract docas/docks from description
+      let docas = null;
+      const docasMatch = descricao.match(/(\d+)\s*(?:docas?|docks?)/i);
+      if (docasMatch) docas = docasMatch[1];
+      if (!docas) {
+        const docasMatch2 = descricao.match(/(?:docas?|docks?)[:\s]*(\d+)/i);
+        if (docasMatch2) docas = docasMatch2[1];
+      }
+
+      const imovel = {
+        ...raw,
+        Descricao: descricao,
+        Titulo: raw.Categoria ? `${raw.Categoria} em ${raw.Cidade || 'SP'}` : null,
+        PeDirecto: peDireito,
+        Docas: docas
+      };
+
       return { imovel };
     } catch (err) {
       console.error('Erro ao carregar imóvel:', err);
@@ -44,10 +76,7 @@ const API = {
     try {
       const resp = await fetch(this.url('imoveis/listar', { pesquisa }));
       const text = await resp.text();
-      console.log('Raw response:', text.substring(0, 200));
       const data = JSON.parse(text);
-      console.log('Parsed data keys:', Object.keys(data));
-      console.log('First item:', JSON.stringify(Object.values(data)[0]));
       return data;
     } catch (err) {
       console.error('Erro:', err);
@@ -141,7 +170,6 @@ const API = {
     }
 
     const imoveis = Object.values(data).filter(i => i && typeof i === 'object' && i.Codigo);
-    console.log('Imóveis encontrados:', imoveis.length);
 
     if (imoveis.length === 0) {
       container.innerHTML = `
